@@ -1,3 +1,8 @@
+/**
+* @author Kyle Ratti (PC18)
+* @version 1.0, 12/5/13
+*/
+
 package utilx.sql;
 
 import java.sql.PreparedStatement;
@@ -6,13 +11,7 @@ import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 
-
-/**
-* @author Kyle Ratti (PC18)
-* @version 1.0, 12/5/13
-*
-* Easy interfacing with a Derby database
-*/
+/** Easy interfacing with a Derby database */
 public class Derpy
 {
 	private final String database;
@@ -23,11 +22,26 @@ public class Derpy
 	* Creates a new Derpy object
 	*
 	* @param strDatabase The name of the database
-	* @throws SQLException, ClassNotFoundException
+	* @throws ClassLoadException, SQLException
 	*/
-	public Derpy(String strDatabase) throws SQLException, ClassNotFoundException
+	public Derpy(String strDatabase) throws SQLException
 	{
-		Class.forName("org.apache.derby.jbdc.EmbeddedDriver");
+		try
+		{
+			Class.forName("org.apache.derby.jbdc.EmbeddedDriver").newInstance();
+		}
+		catch(ClassNotFoundException e)
+		{
+			throw new ClassLoadException();
+		}
+		catch(InstantiationException e)
+		{
+			throw new ClassLoadException();
+		}
+		catch(IllegalAccessException e)
+		{
+			throw new ClassLoadException();
+		}
 
 		this.database = strDatabase;
 		this.connectString = "jbdc:derby:" + this.database + ";create=true";
