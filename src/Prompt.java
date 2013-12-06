@@ -54,9 +54,7 @@ public class Prompt
 			objOutput.append(arrValid[i]);
 			
 			if(i < arrValid.length - 1)
-			{
 				objOutput.append(", ");
-			}
 		}
 		
 		return objOutput.toString();
@@ -191,9 +189,7 @@ public class Prompt
 		while(!bValid)
 		{
 			if(Prompt.dialogs)
-			{
 				strResponse = JOptionPane.showInputDialog(null, strMsg, "Input", JOptionPane.QUESTION_MESSAGE);
-			}
 			else
 			{
 				System.out.print(strMsg);
@@ -201,9 +197,7 @@ public class Prompt
 			}
 			
 			if(strResponse == null || (Prompt.allowNullInput && strResponse.length() == 0))
-			{
 				return null;
-			}
 			
 			int iLen = strResponse.length();
 			
@@ -230,9 +224,7 @@ public class Prompt
 				}
 			}
 			else
-			{
 				Prompt.println("Expected a string to be inputted");
-			}
 		}
 		
 		return strResponse;
@@ -279,9 +271,7 @@ public class Prompt
 		while(!bValid)
 		{
 			if(Prompt.dialogs)
-			{
 				strResponse = JOptionPane.showInputDialog(null, strMsg, "Input", JOptionPane.QUESTION_MESSAGE);
-			}
 			else
 			{
 				System.out.print(strMsg);
@@ -289,9 +279,7 @@ public class Prompt
 			}
 			
 			if(strResponse == null)
-			{
 				return null;
-			}
 			
 			try
 			{
@@ -366,21 +354,15 @@ public class Prompt
 		Double dMax = null;
 		
 		if(iMin != null)
-		{
 			dMin = new Double(iMin);
-		}
 		
 		if(iMax != null)
-		{
 			dMax = new Double(iMax);
-		}
 		
 		Double dValue = Prompt.getDouble(strMsg, dMin, dMax);
 		
 		if(dValue == null)
-		{
 			return null;
-		}
 		
 		return dValue.intValue();
 	}
@@ -413,18 +395,14 @@ public class Prompt
 			strResponse = Prompt.getString(strMsg);
 			
 			if(strResponse == null)
-			{
 				return null;
-			}
 			
 			strLetter = strResponse.charAt(0);
 			
 			for(int i = 0; i < arrValid.length; i++)
 			{
 				if(strLetter == arrValid[i])
-				{
 					return strLetter;
-				}
 			}
 			
 			Prompt.println("Expected one of the following: %s", Prompt.arrToStr(arrValid));
@@ -441,7 +419,10 @@ public class Prompt
 	{
 		if(Prompt.dialogs)
 		{
-			return JOptionPane.showConfirmDialog(null, strMsg, "Confirmation", JOptionPane.YES_NO_OPTION) == 0 ? 'y' : 'n';
+			int iResponse = JOptionPane.showConfirmDialog(null, strMsg, "Confirmation", JOptionPane.YES_NO_OPTION);
+			
+			return (iResponse == JOptionPane.YES_OPTION) ? 'y' : 'n';
+			
 		}
 		
 		return Prompt.getChar(strMsg, Prompt.yesNo);
@@ -459,18 +440,12 @@ public class Prompt
 		{
 			int iResponse = JOptionPane.showConfirmDialog(null, strMsg, "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
 			
-			if(iResponse == 0)
-			{
+			if(iResponse == JOptionPane.YES_OPTION)
 				return 'y';
-			}
-			else if(iResponse == 1)
-			{
+			else if(iResponse == JOptionPane.NO_OPTION)
 				return 'n';
-			}
 			else
-			{
 				return 'c';
-			}
 		}
 		
 		return Prompt.getChar(strMsg, Prompt.yesNoCancel);
@@ -495,9 +470,7 @@ public class Prompt
 			bValid = strResponse.matches(strPattern);
 
 			if(!bValid)
-			{
 				Prompt.println("Didn't receive expected input");
-			}
 		}
 		
 		return strResponse;	
@@ -511,9 +484,7 @@ public class Prompt
 	public static void showDialog(String strMsg)
 	{
 		if(Prompt.dialogs)
-		{
 			JOptionPane.showMessageDialog(null, strMsg, "Information", JOptionPane.INFORMATION_MESSAGE);
-		}
 	}
 
 	/**
@@ -524,9 +495,7 @@ public class Prompt
 	public static void showError(String strMsg)
 	{
 		if(Prompt.dialogs)
-		{
 			JOptionPane.showMessageDialog(null, strMsg, "Error", JOptionPane.ERROR_MESSAGE);
-		}
 	}
 
 	/** Prints some new lines to 'clear' the screen */
