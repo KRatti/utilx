@@ -10,7 +10,7 @@ import java.util.Random;
 import java.text.NumberFormat;
 
 /** Allows for quick access to frequency used math methods */
-public final class Numbers
+public class Numbers
 {
 	private static final Random RAND = new Random();
 	private static final NumberFormat CUR_FORMAT = NumberFormat.getCurrencyInstance();
@@ -242,40 +242,6 @@ public final class Numbers
 	public static String formatCurrency(double dValue)
 	{
 		return Numbers.CUR_FORMAT.format(dValue);
-	}
-
-	/**
-	* Gets a random int while avoiding the specified ints
-	*
-	* @param iMax The maximum number
-	* @param arrValues The ints to avoid
-	* @return A random int between 0 and <code>iMax</code>
-	* @deprecated This is ugly
-	*/
-	public static int avoid(int iMax, Integer[] arrValues)
-	{
-		return Numbers.avoid(0, iMax, arrValues);
-	}
-
-	/**
-	* Gets a random int between <code>iMin</code> and <code>iMax></code> while avoiding the specified ints
-	*
-	* @param iMin The minimum number
-	* @param iMax The maximum number
-	* @param arrValues The ints to avoid
-	* @return A random int between <code>iMin</code> and <code>iMax</code>
-	* @deprecated This is ugly
-	*/
-	public static int avoid(int iMin, int iMax, Integer[] arrValues)
-	{
-		int iValue = Numbers.randInt(iMin, iMax);
-
-		while(Arrays.contains(arrValues, new Integer(iValue)))
-		{
-			iValue = Numbers.randInt(iMin, iMax);
-		}
-
-		return iValue;
 	}
 
 	/**
