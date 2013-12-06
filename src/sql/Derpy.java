@@ -44,7 +44,7 @@ public class Derpy
 		}
 
 		this.database = strDatabase;
-		this.connectString = "jbdc:derby:" + this.database + ";create=true";
+		this.connectString = "jdbc:derby:" + this.database + ";create=true";
 	}
 
 	/**
