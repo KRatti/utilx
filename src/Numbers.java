@@ -250,6 +250,7 @@ public final class Numbers
 	* @param iMax The maximum number
 	* @param arrValues The ints to avoid
 	* @return A random int between 0 and <code>iMax</code>
+	* @deprecated This is ugly
 	*/
 	public static int avoid(int iMax, Integer[] arrValues)
 	{
@@ -263,6 +264,7 @@ public final class Numbers
 	* @param iMax The maximum number
 	* @param arrValues The ints to avoid
 	* @return A random int between <code>iMin</code> and <code>iMax</code>
+	* @deprecated This is ugly
 	*/
 	public static int avoid(int iMin, int iMax, Integer[] arrValues)
 	{

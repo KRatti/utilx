@@ -3,7 +3,7 @@
 * @version 1.0, 11/14/13
 */
 
-package utilx.arrays;
+package utilx;
 
 import java.util.ArrayList;
 

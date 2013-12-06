@@ -6,7 +6,7 @@
 package utilx;
 
 /** Sometimes it's true, sometimes it's false- ya never know */
-public class Chance
+public class Kinda
 {
 	/**
 	* A 75% chance of being true
