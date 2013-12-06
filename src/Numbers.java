@@ -36,13 +36,9 @@ public class Numbers
 	public static double clamp(double dValue, double dMin, Double dMax)
 	{
 		if(dValue < dMin)
-		{
 			return dMin;
-		}
 		else if(dMax != null && dValue > dMax)
-		{
 			return dMax;
-		}
 
 		return dValue;
 	}
@@ -70,13 +66,9 @@ public class Numbers
 	public static int clamp(int iValue, int iMin, int iMax)
 	{
 		if(iValue < iMin)
-		{
 			return iMin;
-		}
 		else if(iValue > iMax)
-		{
 			return iMax;
-		}
 
 		return iValue;
 	}
@@ -106,9 +98,7 @@ public class Numbers
 		int iRemainder = iValue % 10;
 
 		if(Math.abs(iRemainder) >= 5)
-		{
 			return iValue + iRemainder;
-		}
 
 		return iValue - iRemainder;
 	}
@@ -148,22 +138,16 @@ public class Numbers
 	public static boolean isPrime(int iValue)
 	{
 		if(iValue <= 1 || iValue % 2 == 0)
-		{
 			return false;
-		}
 		else if(iValue == 2)
-		{
 			return true;
-		}
 		
 		int iSqrt = (int) Math.sqrt(iValue);
 
 		for(int i = 3; i < iSqrt; i += 2)
 		{
 			if(iValue % i == 0)
-			{
 				return false;
-			}
 		}
 
 		return true;
@@ -180,9 +164,7 @@ public class Numbers
 		for(int i = iValue; i > 10; i /= 10)
 		{
 			if(!Numbers.isPrime(i))
-			{
 				return false;
-			}
 		}
 
 		return true;

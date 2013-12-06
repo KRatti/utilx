@@ -49,4 +49,25 @@ public class Random
 
 		return iNum;
 	}
+	
+	/**
+	* Gets a boolean (with a 50% chance of being <code>true</code>)
+	*
+	* @return <code>true</code> if the odds are in your favor
+	*/
+	public static boolean nextBoolean()
+	{
+		return Random.nextBoolean(50.0);
+	}
+	
+	/**
+	* Gets a boolean with the specified chance of being true
+	*
+	* @param dChance The chance of being <code>true</code> (0.0-100.0)
+	* @return <code>true</code> if the odds are in your favor
+	*/
+	public static boolean nextBoolean(double dChance)
+	{
+		return Numbers.clamp(dChance, 0.0, 100.0) >= (Math.random() * 100);
+	}
 }
