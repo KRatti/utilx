@@ -1,6 +1,6 @@
 /**
 * @author	Kyle Ratti
-* @version	3.0, 11/12/13
+* @version	3.1, 12/06/13
 */
 
 package utilx;
@@ -17,28 +17,16 @@ import javax.swing.JOptionPane;
 * <br/>
 * String strName = Prompt.getString("Enter your name: ");<br/>
 * // strName is now a String (or null if using dialogs and the user canceled)
-* <h2>New in 3.0</h2>
+* <h2>New in 3.1</h2>
 * <ul>
-*	<li>Formatted the documentation to be easier to read</li>
-*	<li>Reduced the number of method calls done by methods with overloads</li>
-*	<li>Fixed an incorrect error message on Prompt.getString(...)</li>
-*	<li>Added length to the StringBuilder used internally</li>
-*	<li>Added Prompt.getMatch(...)</li>
-*	<li>Added Prompt.setAllowNull(Boolean)</li>
-*	<li>Added Prompt.getAllowNull()</li>
-*	<li>Renamed Prompt.isUsingDialogs() to Prompt.getUseDialogs()</li>
-*	<li>Removed Prompt.getBoolean(...)</li>
-*	<li>Removed Prompt.getChar(String strMsg, int iIndex)</li>
-*	<li>Removed Prompt.showMessage(...)</li>
-*	<li>Removed Prompt.toggleDialogs()</li>
-*	<li>Removed Prompt.useDialogs()</li>
-*	<li>Removed Prompt.usingDialogs()</li>
+*	<li>Renamed Prompt.setAllowNull(bAllow) to Prompt.setAllowNullInput(bAllow)</li>
+	<li>Renamed Prompt.getAllowNull() to Prompt.getAllowNullInput()</li>
 * </ul>
 */
-public final class Prompt
+public class Prompt
 {
 	/** The current version of Prompt */
-	public static final double VERSION = 3.0;
+	public static final double VERSION = 3.1;
 	
 	/** The scanner object used for command line input */
 	private static final Scanner scanner = new Scanner(System.in);
@@ -99,7 +87,7 @@ public final class Prompt
 	*
 	* @param bAllow Should input methods allow empty inputs
 	*/
-	public static void setAllowNull(boolean bAllow)
+	public static void setAllowNullInput(boolean bAllow)
 	{
 		Prompt.allowNullInput = bAllow;
 	}
@@ -109,7 +97,7 @@ public final class Prompt
 	*
 	* @return <code>true</code> if null input is allowed
 	*/
-	public static boolean getAllowNull()
+	public static boolean getAllowNullInput()
 	{
 		return Prompt.allowNullInput;
 	}
