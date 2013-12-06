@@ -5,14 +5,11 @@
 
 package utilx;
 
-import java.awt.Color;
-import java.util.Random;
 import java.text.NumberFormat;
 
 /** Allows for quick access to frequency used math methods */
 public class Numbers
 {
-	private static final Random RAND = new Random();
 	private static final NumberFormat CUR_FORMAT = NumberFormat.getCurrencyInstance();
 	private static final double TOLERANCE = 0.0000001;
 
@@ -143,36 +140,6 @@ public class Numbers
 	}
 
 	/**
-	* Gets a random integer between 0 and iMax (exclusive)
-	*
-	* @param iMax The maximum integer
-	* @return A random int
-	*/
-	public static int randInt(int iMax)
-	{
-		return randInt(null, iMax);
-	}
-
-	/**
-	* Get a random integer between iMin and iMax (exclusive)
-	*
-	* @param iMin The minimum integer
-	* @param iMax The maximum integer
-	* @return A random int
-	*/
-	public static int randInt(Integer iMin, int iMax)
-	{
-		int iNum = Numbers.RAND.nextInt(iMax);
-
-		if(iMin != null)
-		{
-			iNum += iMin;
-		}
-
-		return iNum;
-	}
-
-	/**
 	* Checks if an int is prime
 	*
 	* @param iValue The int to check
@@ -242,15 +209,5 @@ public class Numbers
 	public static String formatCurrency(double dValue)
 	{
 		return Numbers.CUR_FORMAT.format(dValue);
-	}
-
-	/**
-	* Gets a random color
-	*
-	* @return A random <code>Color</code>
-	*/
-	public static Color randColor()
-	{
-		return new Color(Numbers.randInt(256), Numbers.randInt(256), Numbers.randInt(256));
 	}
 }
