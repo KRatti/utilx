@@ -1,6 +1,6 @@
 $(function()
 {
-	$("strong").each(function()
+	$("span .strong").each(function()
 		{
 			var obj = $(this);
 
