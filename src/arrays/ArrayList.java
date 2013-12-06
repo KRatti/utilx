@@ -3,7 +3,7 @@
 * @version 1.0, 11/20/13
 */
 
-package utilx;
+package utilx.arrays;
 
 /** Provides an overlay for java.util.ArrayList, adding useful utility methods that aren't there by default */
 public class ArrayList<T> extends java.util.ArrayList<T>
