@@ -22,13 +22,13 @@ public class Derpy
 	* Creates a new Derpy object
 	*
 	* @param strDatabase The name of the database
-	* @throws ClassLoadException, SQLException
+	* @throws SQLException, ClassLoadException
 	*/
-	public Derpy(String strDatabase) throws SQLException
+	public Derpy(String strDatabase) throws SQLException, ClassLoadException
 	{
 		try
 		{
-			Class.forName("org.apache.derby.jbdc.EmbeddedDriver").newInstance();
+			Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
 		}
 		catch(ClassNotFoundException e)
 		{
