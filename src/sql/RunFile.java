@@ -64,7 +64,7 @@ public class RunFile
 
 			while(objScanner.hasNext())
 			{
-				String strQuery = (objScanner.next() + ";").replace("\n", "").replace("\r", "");
+				String strQuery = (objScanner.next() + ";").replace("\r\n", " ").replace("\n", " ");
 
 				if(strQuery.length() > 1)
 				{
