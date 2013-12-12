@@ -18,7 +18,7 @@ public class Arrays
 	*/
 	public static Object random(Object[] objData)
 	{
-		return objData[Numbers.randInt(0, objData.length)];
+		return objData[Random.nextInt(0, objData.length)];
 	}
 
 	/**
@@ -29,7 +29,7 @@ public class Arrays
 	*/
 	public static Object random(ArrayList<Object> objData)
 	{
-		return objData.get(Numbers.randInt(0, objData.size()));
+		return objData.get(Random.nextInt(0, objData.size()));
 	}
 
 	/**
