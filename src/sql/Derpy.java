@@ -5,6 +5,12 @@
 
 package utilx.sql;
 
+import java.util.Scanner;
+import java.util.ArrayList;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+
 import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -115,5 +121,70 @@ public class Derpy
 	{
 		if(this.connection != null)
 			this.connection.close();
+	}
+
+	/**
+	* Runs the SQL in the specified file on the specified database connection
+	*
+	* @param strFile The sql file to run
+	*/
+	public void run(String strFile)
+	{
+		File objFile = new File(strFile);
+
+		if(objFile.exists())
+		{
+			for(String strQuery : Derpy.getQueries(objFile))
+			{
+				try
+				{
+					this.connection.createStatement().executeQuery(strQuery);
+				}
+				catch(SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+		else
+		{
+			System.out.println("File not found!");
+		}
+	}
+
+	/**
+	* Gets an array of all queries in the file
+	*
+	* @param objFile The file to read
+	* @return An <code>ArrayList</code> of queries
+	*/
+	private static ArrayList<String> getQueries(File objFile)
+	{
+		try
+		{
+			Scanner objScanner = new Scanner(objFile);
+			objScanner.useDelimiter(";");
+
+			ArrayList<String> objQueries = new ArrayList<String>();
+
+			while(objScanner.hasNext())
+			{
+				String strQuery = (objScanner.next() + ";").replace("\r\n", " ").replace("\n", " ");
+
+				if(strQuery.length() > 1)
+				{
+					System.out.println(strQuery);
+					objQueries.add(strQuery);
+				}
+			}
+
+			return objQueries;
+		}
+		catch(FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+
+		return new ArrayList<String>();
 	}
 }
