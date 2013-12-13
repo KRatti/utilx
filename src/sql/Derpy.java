@@ -128,7 +128,7 @@ public class Derpy
 	*
 	* @param strFile The sql file to run
 	*/
-	public void run(String strFile)
+	public void runFile(String strFile)
 	{
 		File objFile = new File(strFile);
 
