@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 * <h2>New in 3.1</h2>
 * <ul>
 *	<li>Renamed Prompt.setAllowNull(bAllow) to Prompt.setAllowNullInput(bAllow)</li>
-	<li>Renamed Prompt.getAllowNull() to Prompt.getAllowNullInput()</li>
+*	<li>Renamed Prompt.getAllowNull() to Prompt.getAllowNullInput()</li>
 * </ul>
 */
 public class Prompt
