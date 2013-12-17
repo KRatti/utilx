@@ -60,7 +60,7 @@ public class Derpy
 	*/
 	public void connect() throws SQLException
 	{
-		this.close();
+		if(!this.isClosed()) this.close();
 		this.connection = DriverManager.getConnection(this.connectString);
 	}
 
@@ -71,8 +71,7 @@ public class Derpy
 	*/
 	public boolean isClosed()
 	{
-		if(this.connection == null)
-			return false;
+		if(this.connection == null) return false;
 
 		try
 		{
@@ -119,8 +118,7 @@ public class Derpy
 	*/
 	public void close() throws SQLException
 	{
-		if(this.connection != null)
-			this.connection.close();
+		if(this.connection != null) this.connection.close();
 	}
 
 	/**
@@ -138,18 +136,18 @@ public class Derpy
 			{
 				try
 				{
-					this.connection.createStatement().executeQuery(strQuery);
+					System.out.println("\tRunning: " + strQuery);
+					this.connection.createStatement().executeUpdate(strQuery);
 				}
 				catch(SQLException e)
 				{
-					e.printStackTrace();
+					System.out.println(e.getMessage());
+					//e.printStackTrace();
 				}
 			}
 		}
 		else
-		{
 			System.out.println("File not found!");
-		}
 	}
 
 	/**
@@ -169,7 +167,7 @@ public class Derpy
 
 			while(objScanner.hasNext())
 			{
-				String strQuery = (objScanner.next() + ";").replace("\r\n", " ").replace("\n", " ");
+				String strQuery = (objScanner.next()).trim().replace("\r\n", " ").replace("\n", " ").replace("\t", " ");
 
 				if(strQuery.length() > 1)
 				{
