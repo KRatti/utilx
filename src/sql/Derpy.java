@@ -136,12 +136,13 @@ public class Derpy
 			{
 				try
 				{
-					System.out.println("\tRunning: " + strQuery);
+					//System.out.println("\tRunning: " + strQuery);
 					this.connection.createStatement().executeUpdate(strQuery);
 				}
 				catch(SQLException e)
 				{
 					System.out.println(e.getMessage());
+					System.out.println();
 					//e.printStackTrace();
 				}
 			}
@@ -171,7 +172,7 @@ public class Derpy
 
 				if(strQuery.length() > 1)
 				{
-					System.out.println(strQuery);
+					//System.out.println(strQuery);
 					objQueries.add(strQuery);
 				}
 			}
