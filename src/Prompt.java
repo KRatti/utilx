@@ -209,7 +209,7 @@ public class Prompt
 				{
 					if(iLen < iMin)
 					{
-						Prompt.println("Expected a string >= %d character%s", iMin, (iMin != 1 ? "s" : ""));
+						Prompt.showError("Expected a string >= %d character%s", iMin, (iMin != 1 ? "s" : ""));
 						bValid = false;
 					}
 				}
@@ -218,13 +218,13 @@ public class Prompt
 				{
 					if(iLen > iMax)
 					{
-						Prompt.println("Expected a string =< %d characters", iMax);
+						Prompt.showError("Expected a string =< %d characters", iMax);
 						bValid = false;
 					}
 				}
 			}
 			else
-				Prompt.println("Expected a string to be inputted");
+				Prompt.showError("Expected a string to be inputted");
 		}
 		
 		return strResponse;
@@ -287,7 +287,7 @@ public class Prompt
 			}
 			catch(NumberFormatException e)
 			{
-				Prompt.println("Expected a number as input");
+				Prompt.showError("Expected a number as input");
 			}
 			
 			if(dOutput != null)
@@ -298,7 +298,7 @@ public class Prompt
 				{
 					if(dOutput < dMin)
 					{
-						Prompt.println("Expected a number >= %f", dMin);
+						Prompt.showError("Expected a number >= %f", dMin);
 						bValid = false;
 					}
 				}
@@ -307,7 +307,7 @@ public class Prompt
 				{
 					if(dOutput > dMax)
 					{
-						Prompt.println("Expected a number <= %f", dMax);
+						Prompt.showError("Expected a number <= %f", dMax);
 						bValid = false;
 					}
 				}
@@ -405,7 +405,7 @@ public class Prompt
 					return strLetter;
 			}
 			
-			Prompt.println("Expected one of the following: %s", Prompt.arrToStr(arrValid));
+			Prompt.showError("Expected one of the following: %s", Prompt.arrToStr(arrValid));
 		}
 	}
 	
@@ -470,7 +470,7 @@ public class Prompt
 			bValid = strResponse.matches(strPattern);
 
 			if(!bValid)
-				Prompt.println("Didn't receive expected input");
+				Prompt.showError("Didn't receive expected input");
 		}
 		
 		return strResponse;	
@@ -488,7 +488,18 @@ public class Prompt
 	}
 
 	/**
-	* Shows an error dialog
+	* Shows an error message
+	*
+	* @param strMsg The message to format
+	* @param args The data to format the message with
+	*/
+	public static void showError(String strMsg, Object... args)
+	{
+		Prompt.showError(String.format(strMsg, args));
+	}
+
+	/**
+	* Shows an error message
 	*
 	* @param strMsg The message to show
 	*/
@@ -496,6 +507,8 @@ public class Prompt
 	{
 		if(Prompt.dialogs)
 			JOptionPane.showMessageDialog(null, strMsg, "Error", JOptionPane.ERROR_MESSAGE);
+		else
+			Prompt.println(strMsg);
 	}
 
 	/** Prints some new lines to 'clear' the screen */
