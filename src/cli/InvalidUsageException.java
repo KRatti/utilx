@@ -3,7 +3,7 @@
 * @version 1.0, 12/22/13
 */
 
-package utilx;
+package utilx.cli;
 
 /** An exception for the CLICommand class */
 public class InvalidUsageException extends RuntimeException

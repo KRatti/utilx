@@ -3,9 +3,9 @@
 * @version 1.0, 12/22/13
 */
 
-package utilx;
+package utilx.cli;
 
-import utilx.InvalidUsageException;
+import utilx.cli.*;
 
 /** A command for the CLI class */
 public class CLIArgument

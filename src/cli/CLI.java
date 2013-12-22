@@ -3,15 +3,15 @@
 * @version 1.0, 12/21/13
 */
 
-package utilx;
+package utilx.cli;
 
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Iterator;
 
+import utilx.cli.*;
+
 import utilx.Prompt;
-import utilx.CLICommand;
-import utilx.InvalidUsageException;
 
 /** An easy-to-use class for implementing otherwise complicated CLIs */
 public class CLI

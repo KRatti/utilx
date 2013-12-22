@@ -3,12 +3,11 @@
 * @version 1.0, 12/21/13
 */
 
-package utilx;
+package utilx.cli;
 
 import java.util.TreeMap;
 
-import utilx.InvalidUsageException;
-import utilx.CLIArgument;
+import utilx.cli.*;
 
 /** A command for the CLI class */
 public class CLICommand
