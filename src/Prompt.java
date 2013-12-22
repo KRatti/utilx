@@ -1,6 +1,6 @@
 /**
 * @author	Kyle Ratti
-* @version	3.1, 12/06/13
+* @version	3.2, 12/22/13
 */
 
 package utilx;
@@ -17,16 +17,15 @@ import javax.swing.JOptionPane;
 * <br/>
 * String strName = Prompt.getString("Enter your name: ");<br/>
 * // strName is now a String (or null if using dialogs and the user canceled)
-* <h2>New in 3.1</h2>
+* <h2>New in 3.2</h2>
 * <ul>
-*	<li>Renamed Prompt.setAllowNull(bAllow) to Prompt.setAllowNullInput(bAllow)</li>
-*	<li>Renamed Prompt.getAllowNull() to Prompt.getAllowNullInput()</li>
+*	<li>Nothing big, yet</li>
 * </ul>
 */
 public class Prompt
 {
 	/** The current version of Prompt */
-	public static final double VERSION = 3.1;
+	public static final double VERSION = 3.2;
 	
 	/** The scanner object used for command line input */
 	private static final Scanner scanner = new Scanner(System.in);
