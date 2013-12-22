@@ -13,24 +13,12 @@ public class ArrayList<T> extends java.util.ArrayList<T>
 	*
 	* @param args The data to add to the ArrayList
 	*/
+	@SuppressWarnings({"unchecked", "varargs"})
 	public void add(T... args)
 	{
 		for(int i = 0; i < args.length; i++)
 		{
 			this.add(args[i]);
-		}
-	}
-
-	/**
-	* Adds data from an array to the ArrayList
-	*
-	* @param objData The array of data to add
-	*/
-	public void addArray(T[] objData)
-	{
-		for(int i = 0; i < objData.length; i++)
-		{
-			this.add(objData[i]);
 		}
 	}
 }
