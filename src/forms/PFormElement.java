@@ -6,31 +6,30 @@
 package utilx.forms;
 
 /** The base class for all elements in a <code>PForm</code> */
-public class PFormElement
+public abstract class PFormElement
 {
 	private final String name;
-	private final String text;
+	private final PForm parent;
 
-	public PForm(String strName)
-	{
-		super(strName, strName);
-	}
-
-	public PForm(String strName, String strText)
+	public PFormElement(String strName, PForm objParent)
 	{
 		this.name = strName;
-		this.text = strText;
-		this.elements = new ArrayList<>();
+		this.parent = objParent;
 	}
 
-	public String getName()
+	public final String getName()
 	{
 		return this.name;
 	}
 
-	public String getText()
+	public abstract String getText()
 	{
 		return this.text;
+	}
+
+	public final PForm getParent()
+	{
+		return this.parent;
 	}
 
 	public boolean isInputValid()

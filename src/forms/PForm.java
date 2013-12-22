@@ -12,6 +12,7 @@ public class PForm
 {
 	private final String name;
 	private final ArrayList<PFormElement> elements;
+	private boolean dialogs = false;
 
 	public PForm(String strName)
 	{
@@ -29,8 +30,22 @@ public class PForm
 		return this.elements;
 	}
 
+	public void setUseDialogs(boolean bUseDialogs)
+	{
+		this.dialogs = bUseDialogs;
+	}
+
+	public boolean getUseDialogs()
+	{
+		return this.dialogs;
+	}
+
 	public void show()
 	{
-		// TODO: write the code to show the form (either with a dialog or CLI)
+		if(this.elements.size() <= 0)
+		{
+			System.out.println("Tried showing form '" + this.getName() + "' with no elements!");
+			return;
+		}
 	}
 }
