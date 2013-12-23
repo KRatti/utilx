@@ -7,6 +7,8 @@ package utilx.forms;
 
 import java.util.ArrayList;
 
+import utilx.Prompt;
+
 /** The base class for adding other form elements to */
 public class PForm
 {
@@ -47,5 +49,18 @@ public class PForm
 			System.out.println("Tried showing form '" + this.getName() + "' with no elements!");
 			return;
 		}
+
+		// TODO: show the CLI version of the form
+	}
+
+	public void showDialog()
+	{
+		if(this.elements.size() <= 0)
+		{
+			Prompt.showError("Tried showing form '" + this.getName() + "' with no elements!");
+			return;
+		}
+
+		// TODO: show the dialog version of the form
 	}
 }
