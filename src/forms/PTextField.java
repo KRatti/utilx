@@ -5,6 +5,8 @@
 
 package utilx.forms;
 
+import utilx.Prompt;
+
 /** A text field */
 public class PTextField extends PFormElement
 {
@@ -18,5 +20,23 @@ public class PTextField extends PFormElement
 	public String getText()
 	{
 		return this.text;
+	}
+
+	public void show()
+	{
+		try
+		{
+			this.text = Prompt.getString(this.getName());
+			this.validateInput();
+		}
+		catch(InvalidInputException e)
+		{
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
+
+	public void showDialog()
+	{
+		Prompt.showError("Not yet implemented");
 	}
 }
