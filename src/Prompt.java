@@ -5,8 +5,10 @@
 
 package utilx;
 
+import java.io.Console;
 import java.util.Scanner;
 import java.awt.Component;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +21,7 @@ import javax.swing.JOptionPane;
 * // strName is now a String (or null if using dialogs and the user canceled)
 * <h2>New in 3.2</h2>
 * <ul>
-*	<li>Nothing big, yet</li>
+*	<li>Added Prompt.getPassword (no dialog support, yet)</li>
 * </ul>
 */
 public class Prompt
@@ -33,13 +35,15 @@ public class Prompt
 	private static final char[] yesNo = {'y', 'Y', 'n', 'N'};
 	/** A character array of user input that sets acceptable input for Prompt.getYesNoCancel(...) */
 	private static final char[] yesNoCancel = {'y', 'Y', 'n', 'N', 'c', 'C'};
+	/** A Console for password input */
+	private static final Console console = System.console();
 	/** A boolean that determines if dialog boxes should be used when prompting the user */
 	private static boolean dialogs = false;
 	/** A boolean that determines if input methods should return null if nothing is entered on the command line */
 	private static boolean allowNullInput = false;
 	
 	/**
-	* Converts a character array to a formatted string
+	* Converts a character array to a formatted <code>String</code>
 	*
 	* @param arrValid The character array to format
 	* @return A formatted String (ie: "y, n, t, f")
@@ -99,14 +103,14 @@ public class Prompt
 		return Prompt.allowNullInput;
 	}
 
-	/** Terminates the current line by writing the line separator string */
+	/** Terminates the current line by writing the line separator <code>String</code> */
 	public static void println()
 	{
 		Prompt.print('\n');
 	}
 
 	/**
-	* Prints a string formatted with the specified data and terminates the line
+	* Prints a <code>String</code> formatted with the specified data and terminates the line
 	*
 	* @param strMsg The message to format
 	* @param args The data to format the message with
@@ -128,7 +132,7 @@ public class Prompt
 
 
 	/**
-	* Prints a string formatted with the specified data
+	* Prints a <code>String</code> formatted with the specified data
 	*
 	* @param strMsg The message to format
 	* @param args The data to format the message with
@@ -150,7 +154,7 @@ public class Prompt
 
 	
 	/**
-	* Gets a string from the user
+	* Gets a <code>String</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @return The user's response, a <code>String</code>, or <code>null</code> if the prompt was canceled
@@ -161,7 +165,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a minimum length string from the user
+	* Gets a minimum length <code>String</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @param iMin The minimum length of the response
@@ -173,7 +177,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a minimum &amp; maximum length string from the user
+	* Gets a minimum &amp; maximum length <code>String</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @param iMin The minimum length of the response
@@ -228,9 +232,92 @@ public class Prompt
 		
 		return strResponse;
 	}
+
+	/**
+	* Gets a password from the user
+	*
+	* @param strMsg The message to prompt with
+	* @return The user's response, a <code>String</code>, or <code>null</code> if the prompt was canceled
+	*/
+	public static String getPassword(String strMsg)
+	{
+		return Prompt.getPassword(strMsg, null, null);
+	}
+
+	/**
+	* Gets a password from the user
+	*
+	* @param strMsg The message to prompt with
+	* @param iMin The minimum length of the password
+	* @return The user's response, a <code>String</code>, or <code>null</code> if the prompt was canceled
+	*/
+	public static String getPassword(String strMsg, Integer iMin)
+	{
+		return Prompt.getPassword(strMsg, iMin, null);
+	}
+
+	/**
+	* Gets a password from the user
+	*
+	* @param strMsg The message to prompt with
+	* @param iMin The minimum length of the password
+	* @param iMax The maximum length of the password
+	* @return The user's response, a <code>String</code>, or <code>null</code> if the prompt was canceled
+	*/
+	public static String getPassword(String strMsg, Integer iMin, Integer iMax)
+	{
+		String strPass = null;
+		boolean bValid = false;
+
+		while(!bValid)
+		{
+			if(Prompt.dialogs)
+			{
+				Prompt.showError("getPassword has no implementation for dialogs yet");
+				break;
+			}
+			else
+			{
+				Prompt.print(strMsg);
+				strPass = new String(Prompt.console.readPassword());
+			}
+
+			if(strPass == null || (Prompt.allowNullInput && strPass.length() == 0))
+				return null;
+
+			int iLen = strPass.length();
+
+			if(iLen > 0)
+			{
+				bValid = true;
+
+				if(iMin != null)
+				{
+					if(iLen < iMin)
+					{
+						Prompt.showError("Expected a string >= %d character%s", iMin, (iMin != 1 ? "s" : ""));
+						bValid = false;
+					}
+				}
+
+				if(iMax != null)
+				{
+					if(iLen > iMax)
+					{
+						Prompt.showError("Expected a string =< %d characters", iMax);
+						bValid = false;
+					}
+				}
+			}
+			else
+				Prompt.showError("Expected a password to be inputted");
+		}
+
+		return strPass;
+	}
 	
 	/**
-	* Gets a double from the user
+	* Gets a <code>Double</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @return The user's response, a <code>Double</code>, or <code>null</code> if the prompt was canceled
@@ -241,7 +328,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a minimum size double from the user
+	* Gets a minimum size <code>Double</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @param dMin The minimum size of the response (inclusive)
@@ -253,7 +340,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a minimum &amp; maximum size double from the user
+	* Gets a minimum &amp; maximum size <code>Double</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @param dMin The minimum size of the response (inclusive)
@@ -317,7 +404,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets an integer from the user
+	* Gets an <code>Integer</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @return The user's response, an <code>Integer</code>, or <code>null</code> if the prompt was canceled
@@ -328,7 +415,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a minimum size integer from the user
+	* Gets a minimum size <code>Integer</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @param iMin The minimum size of the response (inclusive)
@@ -340,7 +427,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a minimum &amp; maximum size integer from the user
+	* Gets a minimum &amp; maximum size <code>Integer</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @param iMin The minimum size of the response (inclusive)
@@ -367,7 +454,7 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a character from the user
+	* Gets a <code>Character</code> from the user
 	*
 	* @param strMsg The message to prompt with
 	* @return The user's response, a <code>Character</code>, or <code>null</code> if the prompt was canceled
@@ -378,10 +465,10 @@ public class Prompt
 	}
 	
 	/**
-	* Gets a whitelisted-character from the user
+	* Gets a whitelisted-<code>Character</code> from the user
 	*
 	* @param strMsg The message to prompt with
-	* @param arrValid A character array of valid responses
+	* @param arrValid A <code>Character</code> array of valid responses
 	* @return The user's response, a <code>Character</code>, or <code>null</code> if the prompt was canceled
 	*/
 	public static Character getChar(String strMsg, char[] arrValid)
@@ -451,7 +538,7 @@ public class Prompt
 	}
 
 	/**
-	* Gets a String matching the specified pattern
+	* Gets a <code>String</code> matching the specified pattern
 	*
 	* @param strMsg The message to prompt with
 	* @param strPattern The regular expression to which user input is matched
