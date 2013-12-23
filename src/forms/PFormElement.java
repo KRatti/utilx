@@ -30,4 +30,7 @@ public abstract class PFormElement
 	}
 
 	public void validateInput() throws InvalidInputException {}
+
+	public abstract void show();
+	public abstract void showDialog();
 }
