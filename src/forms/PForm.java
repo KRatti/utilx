@@ -18,7 +18,7 @@ public class PForm
 	public PForm(String strName)
 	{
 		this.name = strName;
-		this.elements = new ArrayList<>();
+		this.elements = new ArrayList<PFormElement>();
 	}
 
 	public String getName()
