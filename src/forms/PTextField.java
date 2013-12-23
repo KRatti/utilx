@@ -10,6 +10,11 @@ public class PTextField extends PFormElement
 {
 	private String text = "";
 
+	public PTextField(String strName, PForm objParent)
+	{
+		super(strName, objParent);
+	}
+
 	public String getText()
 	{
 		return this.text;

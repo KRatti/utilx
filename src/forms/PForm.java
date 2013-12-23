@@ -31,6 +31,11 @@ public class PForm
 		return this.elements;
 	}
 
+	public void add(PFormElement objElement)
+	{
+		this.elements.add(objElement);
+	}
+
 	public void show()
 	{
 		if(this.elements.size() <= 0)

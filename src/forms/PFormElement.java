@@ -22,10 +22,7 @@ public abstract class PFormElement
 		return this.name;
 	}
 
-	public abstract String getText()
-	{
-		return this.text;
-	}
+	public abstract String getText();
 
 	public final PForm getParent()
 	{

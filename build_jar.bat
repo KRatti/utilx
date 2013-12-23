@@ -1,5 +1,5 @@
 @echo off
-javac -Xlint:unchecked src/*.java src/sql/*.java src/cli/*.java
+javac -Xlint:unchecked src/*.java src/sql/*.java src/cli/*.java src/forms/*.java
 if not exist build/utilx mkdir build/utilx
 xcopy /Q /E /Y src\*.class build\utilx\
 jar cvf utilx.jar -C build/ .
