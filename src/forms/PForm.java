@@ -44,7 +44,10 @@ public class PForm
 			return;
 		}
 
-		// TODO: show the CLI version of the form
+		for(PFormElement objElement : this.elements)
+		{
+			objElement.show();
+		}
 	}
 
 	public void showDialog()
