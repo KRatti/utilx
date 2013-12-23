@@ -29,8 +29,5 @@ public abstract class PFormElement
 		return this.parent;
 	}
 
-	public boolean isInputValid()
-	{
-		return true;
-	}
+	public void validateInput() throws InvalidInputException {}
 }
