@@ -14,7 +14,6 @@ public class PForm
 {
 	private final String name;
 	private final ArrayList<PFormElement> elements;
-	private boolean dialogs = false;
 
 	public PForm(String strName)
 	{
@@ -30,16 +29,6 @@ public class PForm
 	public ArrayList<PFormElement> getElements()
 	{
 		return this.elements;
-	}
-
-	public void setUseDialogs(boolean bUseDialogs)
-	{
-		this.dialogs = bUseDialogs;
-	}
-
-	public boolean getUseDialogs()
-	{
-		return this.dialogs;
 	}
 
 	public void show()
