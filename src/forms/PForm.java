@@ -14,11 +14,13 @@ public class PForm
 {
 	private final String name;
 	private final ArrayList<PFormElement> elements;
+	private boolean running;
 
 	public PForm(String strName)
 	{
 		this.name = strName;
 		this.elements = new ArrayList<PFormElement>();
+		this.running = false;
 	}
 
 	public String getName()
@@ -45,20 +47,39 @@ public class PForm
 			return;
 		}
 
+		this.running = true;
+
 		for(PFormElement objElement : this.elements)
 		{
-			try
+			if(!this.running) break;
+
+			boolean bValid = false;
+
+			while(!bValid)
 			{
-				objElement.preShow();
-				objElement.show();
-				objElement.postShow();
-			}
-			catch(InputCanceledException e)
-			{
-				if(objElement.onInputCanceled())
-					break;
+				try
+				{
+					objElement.show();
+					objElement.validateInput();
+					bValid = true;
+				}
+				catch(InputCanceledException e)
+				{
+					System.out.println("Canceled: " + e.getMessage());
+					this.stop();
+				}
+				catch(InvalidInputException e)
+				{
+					System.out.println("Error: " + e.getMessage());
+				}
+				catch(InputException e)
+				{
+					System.out.println("General Error: " + e.getMessage());
+				}
 			}
 		}
+
+		this.running = false;
 	}
 
 	public void showDialog()
@@ -70,5 +91,15 @@ public class PForm
 		}
 
 		// TODO: show the dialog version of the form
+	}
+
+	public final boolean isRunning()
+	{
+		return this.running;
+	}
+
+	public final void stop()
+	{
+		this.running = false;
 	}
 }

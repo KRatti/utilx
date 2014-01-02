@@ -5,53 +5,39 @@
 
 package utilx.forms;
 
+import javax.swing.JPanel;
+
 import utilx.Prompt;
 
-/** A text field */
+/** A checkbox */
 public class PCheckbox extends PFormElement
 {
-	private String text = "";
+	private Boolean response;
 
 	public PCheckbox(String strName)
 	{
 		super(strName);
-	}
-
-	public String getText()
-	{
-		return this.text;
+		this.response = null;
 	}
 
 	@Override
-	public void preShow()
+	public void validateInput() {}
+
+	public Boolean getResponse()
 	{
-		Prompt.setAllowNullInput(true);
+		return this.response;
 	}
 
 	public void show()
 	{
-		try
-		{
-			this.text = Prompt.getYesNo(this.getName()).toString();
-			this.validateInput();
-		}
-		catch(InvalidInputException e)
-		{
-			System.err.println("Error: " + e.getMessage());
-		}
+		Prompt.setAllowNullInput(true);
+		Character strLetter = Prompt.getYesNo(this.getName());
+
+		this.response = strLetter != null && (strLetter == 'y' || strLetter == 'Y');
 	}
 
-	@Override
-	public void validateInput() throws InvalidInputException
+	public JPanel getPanel()
 	{
-		String strText = this.getText();
-
-		if(strText == null)
-			throw new InvalidInputException("Expected a response");
-	}
-
-	public void showDialog()
-	{
-		Prompt.showError("Not yet implemented");
+		throw new RuntimeException("Not yet implemented");
 	}
 }

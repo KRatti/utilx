@@ -5,6 +5,8 @@
 
 package utilx.forms;
 
+import javax.swing.JPanel;
+
 /** The base class for all elements in a <code>PForm</code> */
 public abstract class PFormElement
 {
@@ -14,14 +16,13 @@ public abstract class PFormElement
 	public PFormElement(String strName)
 	{
 		this.name = strName;
+		this.parent = null;
 	}
 
 	public final String getName()
 	{
 		return this.name;
 	}
-
-	public abstract String getText();
 
 	public final void setParent(PForm objParent)
 	{
@@ -33,12 +34,8 @@ public abstract class PFormElement
 		return this.parent;
 	}
 
-	public void validateInput() throws InvalidInputException {}
-
-	public void preShow() {}
-	public void postShow() {}
-	public boolean onInputCanceled() { return false; }
+	public abstract void validateInput();
 
 	public abstract void show();
-	public abstract void showDialog();
+	public abstract JPanel getPanel();
 }

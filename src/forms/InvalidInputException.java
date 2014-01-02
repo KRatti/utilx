@@ -5,8 +5,7 @@
 
 package utilx.forms;
 
-/** A text field */
-public class InvalidInputException extends RuntimeException
+public class InvalidInputException extends InputException
 {
 	public InvalidInputException(String strMsg)
 	{

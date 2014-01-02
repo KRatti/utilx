@@ -7,36 +7,40 @@ package utilx.forms;
 
 import utilx.Prompt;
 
+import javax.swing.JPanel;
+
 /** A text field */
 public class PTextField extends PFormElement
 {
-	private String text = "";
+	private String text;
 
 	public PTextField(String strName)
 	{
 		super(strName);
+		this.text = null;
 	}
 
-	public String getText()
+	@Override
+	public void validateInput() throws InvalidInputException
+	{
+		if(this.getResponse() == null)
+			throw new InvalidInputException("Expected text to be inputted");
+		else if(this.getResponse().length() <= 3)
+			throw new InvalidInputException("Expected text >= 3 characters long");
+	}
+
+	public String getResponse()
 	{
 		return this.text;
 	}
 
 	public void show()
 	{
-		try
-		{
-			this.text = Prompt.getString(this.getName());
-			this.validateInput();
-		}
-		catch(InvalidInputException e)
-		{
-			System.err.println("Error: " + e.getMessage());
-		}
+		this.text = Prompt.getString(this.getName());
 	}
 
-	public void showDialog()
+	public JPanel getPanel()
 	{
-		Prompt.showError("Not yet implemented");
+		throw new RuntimeException("Not yet implemented");
 	}
 }

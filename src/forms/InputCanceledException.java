@@ -5,8 +5,7 @@
 
 package utilx.forms;
 
-/** A text field */
-public class InputCanceledException extends RuntimeException
+public class InputCanceledException extends InputException
 {
 	public InputCanceledException(String strMsg)
 	{

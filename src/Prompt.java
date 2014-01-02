@@ -199,7 +199,7 @@ public class Prompt
 				strResponse = Prompt.scanner.nextLine();
 			}
 			
-			if(strResponse == null || (Prompt.allowNullInput && strResponse.length() == 0))
+			if(Prompt.allowNullInput && (strResponse == null || strResponse.length() == 0))
 				return null;
 			
 			int iLen = strResponse.length();
@@ -461,7 +461,11 @@ public class Prompt
 	*/
 	public static Character getChar(String strMsg)
 	{
-		return Prompt.getString(strMsg).charAt(0);
+		String strResponse = Prompt.getString(strMsg);
+
+		if(strResponse == null) return null;
+
+		return strResponse.charAt(0);
 	}
 	
 	/**
