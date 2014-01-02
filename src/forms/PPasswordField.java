@@ -8,11 +8,11 @@ package utilx.forms;
 import utilx.Prompt;
 
 /** A text field */
-public class PTextField extends PFormElement
+public class PPasswordField extends PFormElement
 {
 	private String text = "";
 
-	public PTextField(String strName)
+	public PPasswordField(String strName)
 	{
 		super(strName);
 	}
@@ -26,7 +26,7 @@ public class PTextField extends PFormElement
 	{
 		try
 		{
-			this.text = Prompt.getString(this.getName());
+			this.text = Prompt.getPassword(this.getName());
 			this.validateInput();
 		}
 		catch(InvalidInputException e)

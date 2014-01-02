@@ -34,6 +34,7 @@ public class PForm
 	public void add(PFormElement objElement)
 	{
 		this.elements.add(objElement);
+		objElement.setParent(this);
 	}
 
 	public void show()
@@ -46,7 +47,17 @@ public class PForm
 
 		for(PFormElement objElement : this.elements)
 		{
-			objElement.show();
+			try
+			{
+				objElement.preShow();
+				objElement.show();
+				objElement.postShow();
+			}
+			catch(InputCanceledException e)
+			{
+				if(objElement.onInputCanceled())
+					break;
+			}
 		}
 	}
 

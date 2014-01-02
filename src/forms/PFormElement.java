@@ -9,12 +9,11 @@ package utilx.forms;
 public abstract class PFormElement
 {
 	private final String name;
-	private final PForm parent;
+	private PForm parent;
 
-	public PFormElement(String strName, PForm objParent)
+	public PFormElement(String strName)
 	{
 		this.name = strName;
-		this.parent = objParent;
 	}
 
 	public final String getName()
@@ -24,12 +23,21 @@ public abstract class PFormElement
 
 	public abstract String getText();
 
+	public final void setParent(PForm objParent)
+	{
+		this.parent = objParent;
+	}
+
 	public final PForm getParent()
 	{
 		return this.parent;
 	}
 
 	public void validateInput() throws InvalidInputException {}
+
+	public void preShow() {}
+	public void postShow() {}
+	public boolean onInputCanceled() { return false; }
 
 	public abstract void show();
 	public abstract void showDialog();

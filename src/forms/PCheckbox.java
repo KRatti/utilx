@@ -8,11 +8,11 @@ package utilx.forms;
 import utilx.Prompt;
 
 /** A text field */
-public class PTextField extends PFormElement
+public class PCheckbox extends PFormElement
 {
 	private String text = "";
 
-	public PTextField(String strName)
+	public PCheckbox(String strName)
 	{
 		super(strName);
 	}
@@ -22,17 +22,32 @@ public class PTextField extends PFormElement
 		return this.text;
 	}
 
+	@Override
+	public void preShow()
+	{
+		Prompt.setAllowNullInput(true);
+	}
+
 	public void show()
 	{
 		try
 		{
-			this.text = Prompt.getString(this.getName());
+			this.text = Prompt.getYesNo(this.getName()).toString();
 			this.validateInput();
 		}
 		catch(InvalidInputException e)
 		{
 			System.err.println("Error: " + e.getMessage());
 		}
+	}
+
+	@Override
+	public void validateInput() throws InvalidInputException
+	{
+		String strText = this.getText();
+
+		if(strText == null)
+			throw new InvalidInputException("Expected a response");
 	}
 
 	public void showDialog()
