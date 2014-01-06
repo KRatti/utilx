@@ -598,7 +598,7 @@ public class Prompt
 		if(Prompt.dialogs)
 			JOptionPane.showMessageDialog(null, strMsg, "Error", JOptionPane.ERROR_MESSAGE);
 		else
-			Prompt.println(strMsg);
+			System.err.println(strMsg);
 	}
 
 	/** Prints some new lines to 'clear' the screen */
