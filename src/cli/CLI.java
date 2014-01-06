@@ -110,11 +110,11 @@ public class CLI
 			}
 			catch(InvalidUsageException e)
 			{
-				Prompt.println("Error: %s", e.getMessage());
+				Prompt.showError("Error: %s", e.getMessage());
 			}
 		}
 		else
-			Prompt.println("Unknown cmd '%s'", strCmd);
+			Prompt.showError("Unknown cmd '%s'", strCmd);
 
 		this.postProcess(bUseDialogs);
 	}

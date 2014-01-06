@@ -5,7 +5,9 @@
 
 package utilx.cli;
 
+import java.util.Map;
 import java.util.TreeMap;
+import java.util.Iterator;
 
 import utilx.cli.*;
 
@@ -84,7 +86,18 @@ public class CLICommand
 					throw new InvalidUsageException(String.format("Unknown argument '%s'", strArg));
 			}
 			else
+			{
+				System.out.println("ARGUMENT\t\tINFORMATION\n========\t===========\n");
+				Iterator it = this.arguments.entrySet().iterator();
+				while (it.hasNext()) {
+					Map.Entry objEntry = (Map.Entry) it.next();
+					String strKey = (String) objEntry.getKey();
+					CLIArgument objArg = (CLIArgument) objEntry.getValue();
+					
+					System.out.printf("%s\t\t%s%n", objArg.getArgument(), objArg.getInfo());
+				}
 				throw new InvalidUsageException("Expected an argument");
+			}
 		}
 
 		this.handle(strCmd, arrArgs);

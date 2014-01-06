@@ -30,10 +30,12 @@ public class PCheckbox extends PFormElement
 
 	public void show()
 	{
+		boolean bOld = Prompt.getAllowNullInput();
 		Prompt.setAllowNullInput(true);
 		Character strLetter = Prompt.getYesNo(this.getName());
 
 		this.response = strLetter != null && (strLetter == 'y' || strLetter == 'Y');
+		Prompt.setAllowNullInput(bOld);
 	}
 
 	public JPanel getPanel()
