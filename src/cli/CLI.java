@@ -58,6 +58,12 @@ public class CLI
 		this.commands.put(objCmd.getCommand(), objCmd);
 	}
 
+	/**
+	* Checks if the specified command exists
+	*
+	* @param strCmd The command to check
+	* @return <code>true</code> if the command exists
+	*/
 	public boolean hasCommand(String strCmd)
 	{
 		return this.commands.containsKey(strCmd);
