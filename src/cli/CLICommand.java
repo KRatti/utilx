@@ -87,7 +87,7 @@ public class CLICommand
 			}
 			else
 			{
-				System.out.println("ARGUMENT\t\tINFORMATION\n========\t===========\n");
+				System.out.println("ARGUMENT\tINFORMATION\n========\t===========\n");
 				Iterator it = this.arguments.entrySet().iterator();
 				while (it.hasNext()) {
 					Map.Entry objEntry = (Map.Entry) it.next();
