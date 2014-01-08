@@ -86,7 +86,7 @@ public class CLI
 		boolean bUseDialogs = Prompt.getUseDialogs();
 		Prompt.setUseDialogs(false);
 
-		String strInput = Prompt.getString("> ");
+		String strInput = Prompt.getString("");
 
 		if(strInput == null || strInput.length() == 0)
 		{
