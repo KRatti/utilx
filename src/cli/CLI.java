@@ -106,6 +106,8 @@ public class CLI
 			arrArgs = strInput.substring(iIndex+1).split(" ");
 		}
 
+		strCmd = strCmd.toLowerCase();
+
 		if(this.hasCommand(strCmd))
 		{
 			CLICommand objCmd = this.commands.get(strCmd);
