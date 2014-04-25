@@ -28,7 +28,7 @@ public class Prompt
 {
 	/** The current version of Prompt */
 	public static final double VERSION = 3.3;
-	
+
 	/** The scanner object used for command line input */
 	private static final Scanner scanner = new Scanner(System.in);
 	/** A character array of user input that sets acceptable input for Prompt.getYesNo(...) */
@@ -41,7 +41,9 @@ public class Prompt
 	private static boolean dialogs = false;
 	/** A boolean that determines if input methods should return null if nothing is entered on the command line */
 	private static boolean allowNullInput = false;
-	
+	/** A boolean that determines if user input should be shown */
+	private static boolean showUserInput = true;
+
 	/**
 	* Converts a character array to a formatted <code>String</code>
 	*
@@ -51,15 +53,15 @@ public class Prompt
 	private static String arrToStr(char[] arrValid)
 	{
 		StringBuilder objOutput = new StringBuilder(arrValid.length + (arrValid.length * 2));
-		
+
 		for(int i = 0; i < arrValid.length; i++)
 		{
 			objOutput.append(arrValid[i]);
-			
+
 			if(i < arrValid.length - 1)
 				objOutput.append(", ");
 		}
-		
+
 		return objOutput.toString();
 	}
 
@@ -101,6 +103,16 @@ public class Prompt
 	public static boolean getAllowNullInput()
 	{
 		return Prompt.allowNullInput;
+	}
+
+	public static void setShowUserInput(boolean bShow)
+	{
+		Prompt.showUserInput = bShow;
+	}
+
+	public static boolean getShowUserInput()
+	{
+		return Prompt.showUserInput;
 	}
 
 	/** Terminates the current line by writing the line separator <code>String</code> */
@@ -152,7 +164,7 @@ public class Prompt
 		System.out.print(objData);
 	}
 
-	
+
 	/**
 	* Gets a <code>String</code> from the user
 	*
@@ -163,7 +175,7 @@ public class Prompt
 	{
 		return Prompt.getString(strMsg, null, null);
 	}
-	
+
 	/**
 	* Gets a minimum length <code>String</code> from the user
 	*
@@ -175,7 +187,7 @@ public class Prompt
 	{
 		return Prompt.getString(strMsg, iMin, null);
 	}
-	
+
 	/**
 	* Gets a minimum &amp; maximum length <code>String</code> from the user
 	*
@@ -188,7 +200,7 @@ public class Prompt
 	{
 		String strResponse = null;
 		boolean bValid = false;
-		
+
 		while(!bValid)
 		{
 			if(Prompt.dialogs)
@@ -198,16 +210,16 @@ public class Prompt
 				System.out.print(strMsg);
 				strResponse = Prompt.scanner.nextLine();
 			}
-			
+
 			if(Prompt.allowNullInput && (strResponse == null || strResponse.length() == 0))
 				return null;
-			
+
 			int iLen = strResponse.length();
-			
+
 			if(iLen > 0)
 			{
 				bValid = true;
-				
+
 				if(iMin != null)
 				{
 					if(iLen < iMin)
@@ -216,7 +228,7 @@ public class Prompt
 						bValid = false;
 					}
 				}
-				
+
 				if(iMax != null)
 				{
 					if(iLen > iMax)
@@ -229,7 +241,7 @@ public class Prompt
 			else
 				Prompt.showError("Expected a string to be inputted");
 		}
-		
+
 		return strResponse;
 	}
 
@@ -315,7 +327,7 @@ public class Prompt
 
 		return strPass;
 	}
-	
+
 	/**
 	* Gets a <code>Double</code> from the user
 	*
@@ -326,7 +338,7 @@ public class Prompt
 	{
 		return Prompt.getDouble(strMsg, null, null);
 	}
-	
+
 	/**
 	* Gets a minimum size <code>Double</code> from the user
 	*
@@ -338,7 +350,7 @@ public class Prompt
 	{
 		return Prompt.getDouble(strMsg, dMin, null);
 	}
-	
+
 	/**
 	* Gets a minimum &amp; maximum size <code>Double</code> from the user
 	*
@@ -351,9 +363,9 @@ public class Prompt
 	{
 		Double dOutput = null;
 		boolean bValid = false;
-		
+
 		String strResponse;
-		
+
 		while(!bValid)
 		{
 			if(Prompt.dialogs)
@@ -363,10 +375,10 @@ public class Prompt
 				System.out.print(strMsg);
 				strResponse = Prompt.scanner.nextLine();
 			}
-			
+
 			if(strResponse == null)
 				return null;
-			
+
 			try
 			{
 				dOutput = Double.parseDouble(strResponse);
@@ -375,11 +387,11 @@ public class Prompt
 			{
 				Prompt.showError("Expected a number as input");
 			}
-			
+
 			if(dOutput != null)
 			{
 				bValid = true;
-				
+
 				if(dMin != null)
 				{
 					if(dOutput < dMin)
@@ -388,7 +400,7 @@ public class Prompt
 						bValid = false;
 					}
 				}
-				
+
 				if(dMax != null)
 				{
 					if(dOutput > dMax)
@@ -399,10 +411,10 @@ public class Prompt
 				}
 			}
 		}
-		
+
 		return dOutput;
 	}
-	
+
 	/**
 	* Gets an <code>Integer</code> from the user
 	*
@@ -413,7 +425,7 @@ public class Prompt
 	{
 		return Prompt.getInt(strMsg, null, null);
 	}
-	
+
 	/**
 	* Gets a minimum size <code>Integer</code> from the user
 	*
@@ -425,7 +437,7 @@ public class Prompt
 	{
 		return Prompt.getInt(strMsg, iMin, null);
 	}
-	
+
 	/**
 	* Gets a minimum &amp; maximum size <code>Integer</code> from the user
 	*
@@ -438,21 +450,21 @@ public class Prompt
 	{
 		Double dMin = null;
 		Double dMax = null;
-		
+
 		if(iMin != null)
 			dMin = (double) iMin;
-		
+
 		if(iMax != null)
 			dMax = (double) iMax;
-		
+
 		Double dValue = Prompt.getDouble(strMsg, dMin, dMax);
-		
+
 		if(dValue == null)
 			return null;
-		
+
 		return dValue.intValue();
 	}
-	
+
 	/**
 	* Gets a <code>Character</code> from the user
 	*
@@ -467,7 +479,7 @@ public class Prompt
 
 		return strResponse.charAt(0);
 	}
-	
+
 	/**
 	* Gets a whitelisted-<code>Character</code> from the user
 	*
@@ -479,16 +491,16 @@ public class Prompt
 	{
 		String strResponse;
 		Character strLetter;
-		
+
 		while(true)
 		{
 			strResponse = Prompt.getString(strMsg);
-			
+
 			if(strResponse == null)
 				return null;
-			
+
 			strLetter = strResponse.charAt(0);
-			
+
 			for(char cChar : arrValid)
 			{
 				if(strLetter == cChar)
@@ -510,17 +522,17 @@ public class Prompt
 		if(Prompt.dialogs)
 		{
 			int iResponse = JOptionPane.showConfirmDialog(null, strMsg, "Confirmation", JOptionPane.YES_NO_OPTION);
-			
+
 			return (iResponse == JOptionPane.YES_OPTION) ? 'y' : 'n';
-			
+
 		}
-		
+
 		return Prompt.getChar(strMsg, Prompt.yesNo);
 	}
-	
+
 	/**
 	* Gets 'y', 'n', or 'c' from the user
-	* 
+	*
 	* @param strMsg The message to prompt with
 	* @return The user's response, a <code>Character</code> ('y', 'n', or 'c'), or <code>null</code> if the prompt was canceled
 	*/
@@ -529,7 +541,7 @@ public class Prompt
 		if(Prompt.dialogs)
 		{
 			int iResponse = JOptionPane.showConfirmDialog(null, strMsg, "Confirmation", JOptionPane.YES_NO_CANCEL_OPTION);
-			
+
 			if(iResponse == JOptionPane.YES_OPTION)
 				return 'y';
 			else if(iResponse == JOptionPane.NO_OPTION)
@@ -537,7 +549,7 @@ public class Prompt
 			else
 				return 'c';
 		}
-		
+
 		return Prompt.getChar(strMsg, Prompt.yesNoCancel);
 	}
 
@@ -562,8 +574,8 @@ public class Prompt
 			if(!bValid)
 				Prompt.showError("Didn't receive expected input");
 		}
-		
-		return strResponse;	
+
+		return strResponse;
 	}
 
 	/**
