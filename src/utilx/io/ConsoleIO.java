@@ -63,7 +63,6 @@ public class ConsoleIO {
 
 	/*
 	* TODO
-	*   - getDouble
 	*   - getInt
 	 */
 
@@ -93,5 +92,13 @@ public class ConsoleIO {
 			throw new NoSuchElementException();
 
 		return strInput.charAt(0);
+	}
+
+	public static Double getDouble() throws NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
+		try {
+			return Double.parseDouble(ConsoleIO.getString());
+		} catch(NullPointerException e) {
+			throw new NoSuchElementException();
+		}
 	}
 }
