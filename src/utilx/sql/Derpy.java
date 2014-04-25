@@ -124,7 +124,7 @@ public class Derpy
 	/**
 	* Runs the SQL in the specified file on the specified database connection
 	*
-	* @param strFile The sql file to run
+	* @param strFile The utilx.sql file to run
 	*/
 	public void runFile(String strFile)
 	{

@@ -7,7 +7,7 @@ package utilx;
 
 import java.io.Console;
 import java.util.Scanner;
-import java.awt.Component;
+//import java.awt.Component;
 
 import javax.swing.JOptionPane;
 
@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
 public class Prompt
 {
 	/** The current version of Prompt */
-	public static final double VERSION = 3.2;
+	public static final double VERSION = 3.3;
 	
 	/** The scanner object used for command line input */
 	private static final Scanner scanner = new Scanner(System.in);
@@ -282,7 +282,7 @@ public class Prompt
 				strPass = new String(Prompt.console.readPassword());
 			}
 
-			if(strPass == null || (Prompt.allowNullInput && strPass.length() == 0))
+			if(Prompt.allowNullInput && strPass.length() == 0)
 				return null;
 
 			int iLen = strPass.length();
@@ -352,7 +352,7 @@ public class Prompt
 		Double dOutput = null;
 		boolean bValid = false;
 		
-		String strResponse = null;
+		String strResponse;
 		
 		while(!bValid)
 		{
@@ -440,10 +440,10 @@ public class Prompt
 		Double dMax = null;
 		
 		if(iMin != null)
-			dMin = new Double(iMin);
+			dMin = (double) iMin;
 		
 		if(iMax != null)
-			dMax = new Double(iMax);
+			dMax = (double) iMax;
 		
 		Double dValue = Prompt.getDouble(strMsg, dMin, dMax);
 		
@@ -477,8 +477,8 @@ public class Prompt
 	*/
 	public static Character getChar(String strMsg, char[] arrValid)
 	{
-		String strResponse = null;
-		Character strLetter = null;
+		String strResponse;
+		Character strLetter;
 		
 		while(true)
 		{
@@ -489,16 +489,16 @@ public class Prompt
 			
 			strLetter = strResponse.charAt(0);
 			
-			for(int i = 0; i < arrValid.length; i++)
+			for(char cChar : arrValid)
 			{
-				if(strLetter == arrValid[i])
+				if(strLetter == cChar)
 					return strLetter;
 			}
-			
+
 			Prompt.showError("Expected one of the following: %s", Prompt.arrToStr(arrValid));
 		}
 	}
-	
+
 	/**
 	* Gets 'y'/'n' from the user
 	*

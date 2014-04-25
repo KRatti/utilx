@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Iterator;
 
-import utilx.cli.*;
+import utilx.cli.CLIArgument;
 
 /** A command for the CLI class */
 public class CLICommand
