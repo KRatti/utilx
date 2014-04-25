@@ -63,31 +63,20 @@ public class ConsoleIO {
 
 	/*
 	* TODO
-	*   - getChar
 	*   - getDouble
 	*   - getInt
 	 */
 
-	public static String getString() throws NoSuchElementException {
-		String strInput = null;
+	public static String getString() throws NoSuchElementException, IllegalStateException, IOError {
+		String strInput;
 
-		if(ConsoleIO.getShowInput()) {
-			try {
-				strInput = ConsoleIO.inputScanner.nextLine();
-			} catch (IllegalStateException e) {
-				ConsoleIO.errorln("Error getting String: " + e.getMessage());
-			}
-		}
-		else {
-			try {
-				strInput = new String(ConsoleIO.inputConsole.readPassword());
+		if(ConsoleIO.getShowInput())
+			strInput = ConsoleIO.inputScanner.nextLine();
+		else
+			strInput = new String(ConsoleIO.inputConsole.readPassword());
 
-				if(strInput.length() <= 0)
-					throw new NoSuchElementException();
-			} catch (IOError e) {
-				ConsoleIO.errorln("Error getting hidden String: " + e.getMessage());
-			}
-		}
+		if(strInput.length() <= 0)
+			throw new NoSuchElementException();
 
 		return strInput;
 	}
