@@ -41,12 +41,10 @@ public class Arrays
 	*/
 	public static boolean contains(Object[] objData, Object objValue)
 	{
-		for(int i = 0; i < objData.length; i++)
+		for(Object obj : objData)
 		{
-			if(objData[i].equals(objValue))
-			{
+			if(obj.equals(objValue))
 				return true;
-			}
 		}
 
 		return false;
