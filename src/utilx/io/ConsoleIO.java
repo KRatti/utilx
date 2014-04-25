@@ -101,4 +101,8 @@ public class ConsoleIO {
 			throw new NoSuchElementException();
 		}
 	}
+
+	public static Integer getInt() throws NullPointerException, NumberFormatException, IllegalStateException, IOError {
+		return Integer.parseInt(ConsoleIO.getString());
+	}
 }
