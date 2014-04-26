@@ -75,7 +75,7 @@ public class ConsoleIO {
 		return strInput;
 	}
 
-	public static Character getChar() throws NoSuchElementException, IllegalStateException, IOError {
+	public static char getChar() throws NoSuchElementException, IllegalStateException, IOError {
 		String strInput;
 
 		if(ConsoleIO.getShowInput())
@@ -89,11 +89,11 @@ public class ConsoleIO {
 		return strInput.charAt(0);
 	}
 
-	public static Double getDouble() throws NullPointerException, NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
+	public static double getDouble() throws NullPointerException, NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
 		return Double.parseDouble(ConsoleIO.getString());
 	}
 
-	public static Integer getInt() throws NullPointerException, NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
+	public static int getInt() throws NullPointerException, NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
 		return Integer.parseInt(ConsoleIO.getString());
 	}
 }
