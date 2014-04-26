@@ -94,15 +94,11 @@ public class ConsoleIO {
 		return strInput.charAt(0);
 	}
 
-	public static Double getDouble() throws NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
-		try {
-			return Double.parseDouble(ConsoleIO.getString());
-		} catch(NullPointerException e) {
-			throw new NoSuchElementException();
-		}
+	public static Double getDouble() throws NullPointerException, NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
+		return Double.parseDouble(ConsoleIO.getString());
 	}
 
-	public static Integer getInt() throws NullPointerException, NumberFormatException, IllegalStateException, IOError {
+	public static Integer getInt() throws NullPointerException, NoSuchElementException, NumberFormatException, IllegalStateException, IOError {
 		return Integer.parseInt(ConsoleIO.getString());
 	}
 }
