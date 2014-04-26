@@ -61,11 +61,6 @@ public class ConsoleIO {
 		return ConsoleIO.showInput;
 	}
 
-	/*
-	* TODO
-	*   - getInt
-	 */
-
 	public static String getString() throws NoSuchElementException, IllegalStateException, IOError {
 		String strInput;
 
