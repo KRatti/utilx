@@ -21,7 +21,13 @@ public class Prompt {
 		return Prompt.VERSION;
 	}
 
-	public String getString(String strPrompt) throws NoSuchElementException {
+	/**
+	 * Get a String from the user
+	 * @param strPrompt The message to prompt the user with
+	 * @return The user's response, or null if they entered nothing
+	 * @throws NoSuchElementException
+	 */
+	public static String getString(String strPrompt) throws NoSuchElementException {
 		ConsoleIO.println(strPrompt);
 
 		String strInput = null;
