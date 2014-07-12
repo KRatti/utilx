@@ -1,6 +1,6 @@
 /**
-* @author Kyle Ratti (PC18)
-* @version 1.0, 11/14/13
+* @author Kyle Ratti
+* @version 1.0, 07/11/14
 */
 
 package utilx;
