@@ -1,6 +1,6 @@
 /**
-* @author Kyle Ratti (PC18)
-* @version 1.0, 12/06/13
+* @author Kyle Ratti
+* @version 1.0, 07/11/14
 */
 
 package utilx;
@@ -8,8 +8,7 @@ package utilx;
 import java.awt.Color;
 
 /** Allows for quick access to frequency used math methods */
-public class Random
-{
+public class Random {
 	private static final java.util.Random random = new java.util.Random();
 	
 	/**
@@ -17,8 +16,7 @@ public class Random
 	*
 	* @return A random <code>Color</code>
 	*/
-	public static Color nextColor()
-	{
+	public static Color nextColor() {
 		return new Color(Random.nextInt(256), Random.nextInt(256), Random.nextInt(256));
 	}
 	
@@ -28,8 +26,7 @@ public class Random
 	* @param iMax The maximum integer
 	* @return A random int
 	*/
-	public static int nextInt(int iMax)
-	{
+	public static int nextInt(int iMax) {
 		return Random.nextInt(null, iMax);
 	}
 
@@ -40,8 +37,7 @@ public class Random
 	* @param iMax The maximum integer
 	* @return A random int
 	*/
-	public static int nextInt(Integer iMin, int iMax)
-	{
+	public static int nextInt(Integer iMin, int iMax) {
 		int iNum = Random.random.nextInt(iMax);
 
 		if(iMin != null)
@@ -55,8 +51,7 @@ public class Random
 	*
 	* @return <code>true</code> if the odds are in your favor
 	*/
-	public static boolean nextBoolean()
-	{
+	public static boolean nextBoolean() {
 		return Random.nextBoolean(50.0);
 	}
 	
@@ -66,8 +61,7 @@ public class Random
 	* @param dChance The chance of being <code>true</code> (0.0-100.0)
 	* @return <code>true</code> if the odds are in your favor
 	*/
-	public static boolean nextBoolean(double dChance)
-	{
+	public static boolean nextBoolean(double dChance) {
 		return Numbers.clamp(dChance, 0.0, 100.0) >= (Math.random() * 100);
 	}
 }
