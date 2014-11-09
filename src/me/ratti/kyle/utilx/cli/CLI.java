@@ -3,7 +3,7 @@
 * @version 1.0, 07/11/14
 */
 
-package utilx.cli;
+package me.ratti.kyle.utilx.cli;
 
 /** Provides a command line interface */
 public class CLI {

@@ -3,7 +3,7 @@
 * @version 1.0, 07/11/14
 */
 
-package utilx;
+package me.ratti.kyle.utilx;
 
 import java.awt.Color;
 
