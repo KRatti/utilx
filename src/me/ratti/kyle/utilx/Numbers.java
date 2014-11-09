@@ -3,7 +3,7 @@
 * @version 1.5, 07/11/14
 */
 
-package utilx;
+package me.ratti.kyle.utilx;
 
 import java.text.NumberFormat;
 
@@ -20,7 +20,7 @@ public class Numbers {
 	* @return The clamped double
 	*/
 	public static double clamp(double dValue, double dMin) {
-		return Numbers.clamp(dValue, dMin, null);
+		return clamp(dValue, dMin, null);
 	}
 
 	/**
@@ -76,9 +76,9 @@ public class Numbers {
 	* @return The rounded double
 	*/
 	public static double round(double dValue, int iPlaces) {
-		iPlaces = Numbers.clamp(Math.abs(iPlaces), 1);
+		iPlaces = clamp(Math.abs(iPlaces), 1);
 
-		return (Math.round((dValue * (Math.pow(10, iPlaces)))) / Math.pow(10, iPlaces));
+		return Math.round((dValue * (Math.pow(10, iPlaces)))) / Math.pow(10, iPlaces);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public class Numbers {
 	*/
 	public static boolean isSuperPrime(int iValue) {
 		for(int i = iValue; i > 10; i /= 10)
-			if(!Numbers.isPrime(i))
+			if(!isPrime(i))
 				return false;
 
 		return true;
@@ -163,7 +163,7 @@ public class Numbers {
 	* @return true if the doubles are within the tolerance of each other
 	*/
 	public static boolean isEqual(double dValue, double dValue2) {
-		return dValue - dValue2 <= Numbers.TOLERANCE;
+		return dValue - dValue2 <= TOLERANCE;
 	}
 
 	/**
@@ -173,6 +173,6 @@ public class Numbers {
 	* @return A formatted String with the currency
 	*/
 	public static String formatCurrency(double dValue) {
-		return Numbers.CUR_FORMAT.format(dValue);
+		return CUR_FORMAT.format(dValue);
 	}
 }
