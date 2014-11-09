@@ -131,25 +131,11 @@ public class Numbers {
 			return false;
 		else if(iValue == 2)
 			return true;
-		
+
 		int iSqrt = (int) Math.sqrt(iValue);
 
 		for(int i = 3; i < iSqrt; i += 2)
 			if(iValue % i == 0)
-				return false;
-
-		return true;
-	}
-
-	/**
-	* Checks if an int is a super prime (all digits in the number are prime)
-	*
-	* @param iValue The int to check
-	* @return true if the number is a super prime
-	*/
-	public static boolean isSuperPrime(int iValue) {
-		for(int i = iValue; i > 10; i /= 10)
-			if(!isPrime(i))
 				return false;
 
 		return true;
