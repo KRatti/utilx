@@ -121,27 +121,6 @@ public class Numbers {
 	}
 
 	/**
-	* Checks if an int is prime
-	*
-	* @param iValue The int to check
-	* @return true if the number is prime
-	*/
-	public static boolean isPrime(int iValue) {
-		if(iValue <= 1 || iValue % 2 == 0)
-			return false;
-		else if(iValue == 2)
-			return true;
-
-		int iSqrt = (int) Math.sqrt(iValue);
-
-		for(int i = 3; i < iSqrt; i += 2)
-			if(iValue % i == 0)
-				return false;
-
-		return true;
-	}
-
-	/**
 	* Determines if two doubles are equal
 	*
 	* @param dValue The bigger of the two values
