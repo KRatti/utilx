@@ -9,8 +9,9 @@ import java.text.NumberFormat;
 
 /** Allows for quick access to frequency used math methods */
 public class Numbers {
+	public static final double TOLERANCE = 0.0000001;
+
 	private static final NumberFormat CUR_FORMAT = NumberFormat.getCurrencyInstance();
-	private static final double TOLERANCE = 0.0000001;
 
 	/**
 	* Clamps a double value
@@ -121,14 +122,24 @@ public class Numbers {
 	}
 
 	/**
-	* Determines if two doubles are equal
-	*
-	* @param dValue The bigger of the two values
-	* @param dValue2 The double to check against
+	* Determines if two doubles are equal using the default tolerance
+	* @param dValue The first value
+	* @param dValue2 The second value
 	* @return true if the doubles are within the tolerance of each other
 	*/
 	public static boolean isEqual(double dValue, double dValue2) {
-		return dValue - dValue2 <= TOLERANCE;
+		return isEqual(dValue, dValue2, TOLERANCE);
+	}
+
+	/**
+	 * Determines if two doubles are equal
+	 * @param dValue The first value
+	 * @param dValue2 The second value
+	 * @param dTolerance The tolerance to determine equality with
+	 * @return true if the provided values are within the specified tolerance
+	 */
+	public static boolean isEqual(double dValue, double dValue2, double dTolerance) {
+		return dValue - dValue2 <= dTolerance;
 	}
 
 	/**
