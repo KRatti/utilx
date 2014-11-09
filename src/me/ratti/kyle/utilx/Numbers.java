@@ -9,7 +9,7 @@ import java.text.NumberFormat;
 
 /** Allows for quick access to frequency used math methods */
 public class Numbers {
-	public static final double TOLERANCE = 0.0000001;
+	public static final double TOLERANCE = 0.00000001;
 
 	private static final NumberFormat CUR_FORMAT = NumberFormat.getCurrencyInstance();
 
